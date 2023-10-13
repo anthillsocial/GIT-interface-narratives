@@ -1,0 +1,44 @@
+html, body{
+    background:#ccc;
+    border:0;
+    padding:0;
+    margin:0px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+  }
+  #image{
+    width:512px;
+    height:512px;
+    margin-left:auto;
+    margin-right:auto;
+    margin-top:50px;
+    border:1px solid #000;
+  }
+  #links{
+   position:absolute;
+   top:150px;
+   width: 512px;
+   height:400px;
+   text-align: center;
+   font-size:2em;
+ }
+ #links span,
+ #links b,
+ #links a,
+ a:link, 
+ a:visited,  
+ a:active, 
+ a:focus{
+    background-color: aliceblue;
+    padding:5px;
+    line-height:2em;
+    text-decoration: none;
+    color:#000
+ }
+ #links span:hover,
+ #links a:hover
+
+ {
+    cursor: pointer;
+    color: aliceblue;
+    background-color:#000;
+ }
