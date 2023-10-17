@@ -11,6 +11,7 @@
                   folder = url.split('-')[0]; // Folder of images to display
                   imageN = url.split('-')[1]; // Number of images in the folder
                   imageType = url.split('-')[2]; // Tyoe of images in the folder - i.e jpg, gif
+                  console.log('folder:'+folder+' imageN:'+imageN+' imageType:'+imageType);
               }
               
               // Generate an array of images to display
@@ -28,7 +29,7 @@
               image.style.background = `url("${images[1]}")`;
               opacity = 0;
 
-              // Auto-generate the list of links from the span tags
+              /* Auto-generate the list of links from the span tags
               let spans = links.getElementsByTagName("span");
               let myFolder;
               let myImageN; 
@@ -38,7 +39,7 @@
                 myImageType = spans[i].getAttribute("data-type");
                 spans[i].setAttribute("onclick",`newImages('${myFolder}','${myImageN}','${myImageType}')`);
                 console.log('myFolder:'+myFolder+' myImageN:'+myImageN+' myImageType:'+myImageType); 
-              }
+              }*/
 
               // Animate the images
               function step(timestamp) {

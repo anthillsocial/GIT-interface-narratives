@@ -25,7 +25,7 @@ Some Associated images auto-generated via: https://stablediffusionweb.com
         <script>
               // Setup base variables
               let speed = 0.005; // Speed of the image fade 
-              let folder = 'landvalue'; // Default images folder
+              let folder = 'landvalue'; // Default images folder for this page
               let imageN = 24;          // Default number of images in the folder
               let imageType = 'jpg';    // Default image type. i.e jpg, gif, png
         </script>
@@ -39,12 +39,16 @@ Some Associated images auto-generated via: https://stablediffusionweb.com
 
             <!----
             SPECIFY THE DIFFERENT IMAGE FOLDERS TO LOAD
+            Construct the href link in this format: 
+             ?folder-N-T
+            Where 'folder' = the folder name
+                  'N' = the last number of the images in the folder
+                  'T' = the type of images in the folder - such as GIF, JPG, PNG 
             -->
-            <span class="link" data-folder="monopoly" data-imageN="2" data-type="jpg">MONOPOLY</span> 
-            <span class="link" data-folder="landvalue" data-imageN="24" data-type="jpg">LANDVALUE</span>  
-            <span class="link" data-folder="horse" data-imageN="3" data-type="gif">HORSE</span>  
-           
-           <!-- <a class="link" href="other.html">OTHER</a>  --> 
+            <a class="link" href="?monopoly-2-jpg">MONOPOLY</a>  
+            <a class="link" href="?landvalue-24-jpg">LANDVALUE</a>  
+            <a class="link" href="relations.html">RELATIONS</a> 
+
           </div>
         </div>
 
