@@ -44,8 +44,26 @@ function draw() {
     fill(76,105,186); 
     rect(mouthX, mouthY, 40, 25, 4,4,4,4);
     fill(255); 
-    text('like', mouthX+9, mouthY+16)
+    text('like', mouthX+9, mouthY+16);
+
+    drawLeftEye(positions); 
   }
+  
+}
+
+function drawLeftEye(positions){
+  let i = 23; 
+  fill(0,0,0,100); 
+  beginShape();
+    i = 23;vertex(positions[i][0], positions[i][1]);
+    i = 63;vertex(positions[i][0], positions[i][1]);
+    i = 24;vertex(positions[i][0], positions[i][1]);
+    i = 64;vertex(positions[i][0], positions[i][1]);
+    i = 25;vertex(positions[i][0], positions[i][1]);
+    i = 65;vertex(positions[i][0], positions[i][1]);
+    i = 26;vertex(positions[i][0], positions[i][1]);
+    i = 66;vertex(positions[i][0], positions[i][1]);
+  endShape(CLOSE);
 }
 
 function keyPressed() {
