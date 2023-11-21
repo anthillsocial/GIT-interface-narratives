@@ -7,6 +7,8 @@ let ctracker;
 let capture;
 const d = new Date();
 
+// A code comment write your thought here
+
 function setup() {
   createCanvas(640, 480);
   //web cam capture
@@ -21,6 +23,7 @@ function setup() {
 
 function draw() {
   //draw the captured video on a screen with the image filter
+  // I wokred for three days on this and really struggled!!!
   image(capture, 0,0, 640, 480);
   filter(INVERT);
 
