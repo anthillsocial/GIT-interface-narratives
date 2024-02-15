@@ -1,0 +1,74 @@
+/* CSS styles for index.html */
+
+/* CSS styles for website background */
+body {
+  min-height: 100vh;
+  background: #e7f2fd;
+
+/* CSS files add styling rules to your content */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 20px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+table, th, td {
+    border: 1px solid #ddd;
+    text-align: left;
+    padding: 8px;
+}
+
+th {
+    background-color: #f2f2f2;
+}
+
+td img {
+    width: 50px;
+    height: auto;
+}
+
+@media (max-width: 600px) {
+    td img {
+        width: 30px;
+    }
+}
+
+
+.filter-sidebar {
+  /* Sidebar styling */
+  width: 900px; /* Adjust as needed */
+  padding: 20px;
+  border-right: 1px solid #ccc;
+}
+
+.filter-section h2 {
+  margin-bottom: 20px;
+}
+
+.filter-category h3 {
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
+
+.filter-options {
+  display: flex;
+  flex-direction: column;
+}
+
+.filter-options label {
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+}
+
+.filter {
+  margin-right: 10px;
+}
+
+
+
