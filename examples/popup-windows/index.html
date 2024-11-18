@@ -37,7 +37,7 @@
     <script>
         let width = window.innerWidth-200;  
         let height = window.innerHeight-200;
-        createFormElement("mywindow", "submit", 50, 50,"%");   // Create submit form element
+        createFormElement("mywindow", "submit", 50, 50, "px");   // Create submit form element
         createWindow("mywindow", "Content!", 50, 50, 'px');    // Create a window
         createWindow("mywindow", "Content!", random(width), random(height), 'px');
 
@@ -49,9 +49,9 @@
         }
         
         // Generate FormElement. type: "checkbox","color","date","month","radio","range","submit"
-        function createFormElement(where, type, x=0, y=0){
-            let css = "top:"+random(100)+"%;"
-            css += "left:"+random(100)+"%;";
+        function createFormElement(where, type, x=0, y=0, unit="%"){
+            let css = "top:"+random(100)+unit+";"
+            css += "left:"+random(100)+unit+";";
             let element = document.createElement("input");   // Creates: <input type="">
             element.setAttribute("type", type);              // e.g.: <input type="button">
             element.setAttribute("style", css);              // e.g.: <input type="button" style="border:1px solid blue;">
