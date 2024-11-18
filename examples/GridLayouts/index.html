@@ -13,7 +13,7 @@
         .flexbox > div {
             outline: 1px solid;
         }
-        .left {
+        .col1 {
             flex: 1;
             color: red;
         }
@@ -21,16 +21,12 @@
             flex: 0 0 800px;
             color: green;
         }
-        .right {
-            flex: 1;
-            color: blue;
-        }
-        .equal{
+        .hoverbox{
             flex: 1;
             height: 200px;
             background:#ccc;
         }
-        .equal:hover{
+        .hoverbox:hover{
             background:#ffffff;
         }
         #mywindow{
@@ -47,41 +43,41 @@
 </head>
 <body id="main">
     <div class="flexbox">
-        <div id="header" class="left">HEADER</div>
+        <div id="header" class="col1">HEADER</div>
     </div>
     <div class="flexbox">
-        <div class="left">Left</div>
+        <div class="col1">Left</div>
         <div class="center">
             <div class="flexbox">
-                <div class="equal" onClick="win('Block1')">Block1</div>
-                <div class="equal" onClick="win('Block2')">Block</div>
-                <div class="equal" onClick="win('Block3')">Block</div>
+                <div class="hoverbox" onClick="win('Block1')">Block1</div>
+                <div class="hoverbox" onClick="win('Block2')">Block2</div>
+                <div class="hoverbox" onClick="win('Block3')">Block3</div>
             </div>
             <div class="flexbox">
-                <div class="equal" onClick="win('Block4')">Block</div>
-                <div class="equal" onClick="win('Block5')">Block</div>
-                <div class="equal" onClick="win('Block6')">Block</div>
+                <div class="hoverbox" onClick="win('Block4')">Block4</div>
+                <div class="hoverbox" onClick="win('Block5')">Block5</div>
+                <div class="hoverbox" onClick="win('Block6')">Block6</div>
             </div>
             <div class="flexbox">
-                <div class="equal" onClick="win('Block7')">Block</div>
-                <div class="equal" onClick="win('Block8')">Block</div>
-                <div class="equal" onClick="win('Block9')">Block</div>
+                <div class="hoverbox" onClick="win('Block7')">Block7</div>
+                <div class="hoverbox" onClick="win('Block8')">Block8</div>
+                <div class="hoverbox" onClick="win('Block9')">Block9</div>
             </div>
             <div class="flexbox">
-                <div class="equal" onClick="win('Block10')">Block</div>
-                <div class="equal" onClick="win('Block11')">Block</div>
-                <div class="equal" onClick="win('Block12')">Block</div>
+                <div class="hoverbox" onClick="win('Block10')">Block10</div>
+                <div class="hoverbox" onClick="win('Block11')">Block11</div>
+                <div class="hoverbox" onClick="win('Block12')">Block12</div>
             </div>
             <div class="flexbox">
-                <div class="equal" onClick="win('Block13')">Block</div>
-                <div class="equal" onClick="win('Block14')">Block</div>
-                <div class="equal" onClick="win('Block15')">Block</div>
+                <div class="hoverbox" onClick="win('Block13')">Block13</div>
+                <div class="hoverbox" onClick="win('Block14')">Block14</div>
+                <div class="hoverbox" onClick="win('Block15')">Block15</div>
             </div>
         </div>
-        <div class="right">Right</div>
+        <div class="col1">Right</div>
     </div>
     <div class="flexbox">
-        <div id="header" class="left">FOOTER</div>
+        <div id="header" class="col1">FOOTER</div>
     </div>
 
    
