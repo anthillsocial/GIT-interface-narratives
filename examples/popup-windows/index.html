@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<head>
+    <title>Popup Windows</title>
+    <style>
+        /*Simulation of OSx desktop: 
+           https://github.com/mhmdmhd6/Mac-OS-Desktop?tab=readme-ov-file
+        */
+        html{
+            background-color:grey;
+            margin: auto;
+            width:21cm;
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+        }
+        input{
+            padding:5px;
+            position:absolute;
+            filter: drop-shadow(4px 4px 6px #292929);
+            background-color: crimson;
+            z-index:1000;
+        }
+        .window{
+            position:absolute;
+            width:200px;
+            height:200px;
+            border-radius:3px;
+            border-top:30px solid #acd5f7;
+            background: #ededed;
+            filter: drop-shadow(4px 4px 6px #292929);
+            padding:5px;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="mywindow"></div>
+
+    <script>
+        let width = window.innerWidth-200;  
+        let height = window.innerHeight-200;
+        createFormElement("mywindow", "submit", 50, 50,"%");   // Create submit form element
+        createWindow("mywindow", "Content!", 50, 50, 'px');    // Create a window
+        createWindow("mywindow", "Content!", random(width), random(height), 'px');
+
+        function generateWindows(){
+            let x = random(width);
+            let y = random(height);
+            createWindow("mywindow", "Content!", x, y, 'px');
+            createWindow("mywindow", "Content!", x+10, y+10, 'px');
+        }
+        
+        // Generate FormElement. type: "checkbox","color","date","month","radio","range","submit"
+        function createFormElement(where, type, x=0, y=0){
+            let css = "top:"+random(100)+"%;"
+            css += "left:"+random(100)+"%;";
+            let element = document.createElement("input");   // Creates: <input type="">
+            element.setAttribute("type", type);              // e.g.: <input type="button">
+            element.setAttribute("style", css);              // e.g.: <input type="button" style="border:1px solid blue;">
+            element.setAttribute("value", "Work");
+            element.setAttribute("onClick", "generateWindows()");
+            document.getElementById(where).appendChild(element);   // Add this HTML element to where
+        }
+
+        function createWindow(where, content="", x=0, y=0, unit="%"){
+            // Define a style
+            let css = "position:absolute;";
+            css += "top:"+y+unit+";"
+            css += "left:"+x+unit+";";
+            // Creates: <div class="window"></div>
+            let element = document.createElement("div");         
+            element.innerHTML = content;                         // Adds content
+            element.setAttribute("class", "window");                   
+            element.setAttribute("style", css);                  
+            document.getElementById(where).appendChild(element);     
+        }
+
+        // Returns a random number between 0 and the 'end' variable
+        function random(end){
+            return Math.floor(Math.random()*end); // Returns a random number
+        }
+    </script>
+
+</body>
+</html>
+
+
+
+
