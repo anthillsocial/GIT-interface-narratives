@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<head>
+    <style>
+        html, body{
+            margin:0px;
+        }
+        #header, #footer{
+            height:50px;
+        }
+        .flexbox {
+            display: flex;
+        }
+        .flexbox > div {
+            outline: 1px solid;
+        }
+        .left {
+            flex: 1;
+            color: red;
+        }
+        .center {
+            flex: 0 0 800px;
+            color: green;
+        }
+        .right {
+            flex: 1;
+            color: blue;
+        }
+        .equal{
+            flex: 1;
+            height: 200px;
+            background:#ccc;
+        }
+        .equal:hover{
+            background:#ffffff;
+        }
+        #mywindow{
+            position:absolute;
+            top:15px;
+            left:15px;
+            right:50px;
+            bottom:50px;
+            padding:10px;
+            background-color: rgba(100, 100, 100, 0.5);
+            z-index: 1000;
+        }
+    </style>
+</head>
+<body id="main">
+    <div class="flexbox">
+        <div id="header" class="left">HEADER</div>
+    </div>
+    <div class="flexbox">
+        <div class="left">Left</div>
+        <div class="center">
+            <div class="flexbox">
+                <div class="equal" onClick="win('Block1')">Block1</div>
+                <div class="equal" onClick="win('Block2')">Block</div>
+                <div class="equal" onClick="win('Block3')">Block</div>
+            </div>
+            <div class="flexbox">
+                <div class="equal" onClick="win('Block4')">Block</div>
+                <div class="equal" onClick="win('Block5')">Block</div>
+                <div class="equal" onClick="win('Block6')">Block</div>
+            </div>
+            <div class="flexbox">
+                <div class="equal" onClick="win('Block7')">Block</div>
+                <div class="equal" onClick="win('Block8')">Block</div>
+                <div class="equal" onClick="win('Block9')">Block</div>
+            </div>
+            <div class="flexbox">
+                <div class="equal" onClick="win('Block10')">Block</div>
+                <div class="equal" onClick="win('Block11')">Block</div>
+                <div class="equal" onClick="win('Block12')">Block</div>
+            </div>
+            <div class="flexbox">
+                <div class="equal" onClick="win('Block13')">Block</div>
+                <div class="equal" onClick="win('Block14')">Block</div>
+                <div class="equal" onClick="win('Block15')">Block</div>
+            </div>
+        </div>
+        <div class="right">Right</div>
+    </div>
+    <div class="flexbox">
+        <div id="header" class="left">FOOTER</div>
+    </div>
+
+   
+
+    <script>
+
+        function win(content){
+            closeme();
+            // Define a style
+            let css = "";
+            let element = document.createElement("div");   
+            element.setAttribute("id", "mywindow");      
+            element.setAttribute("onClick", "closeme()");    
+            element.innerHTML = content;                                                  
+            document.body.appendChild(element);     
+        }
+
+        function closeme(){
+            let window = document.getElementById("mywindow");
+            if(window != null){
+                window.remove();
+            }
+        }
+
+
+    </script>
+    
+  </body>
+</html>
