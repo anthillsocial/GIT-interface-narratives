@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<head>
+    <title>Popup Windows</title>
+    <style>
+        /*Simulation of OSx desktop: 
+           https://github.com/mhmdmhd6/Mac-OS-Desktop?tab=readme-ov-file
+        */
+        html{
+            background-color:grey;
+            margin: auto;
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+            font-size: 2em;
+        }
+        #thebutton{
+            padding:5px;
+            position:absolute;
+            top:200px;
+            left:200px;            
+            filter: drop-shadow(4px 4px 6px #292929);
+            background-color: crimson;
+            z-index:1000;
+        }
+        #thebutton:hover{
+            background-color: rgb(20, 137, 220);
+        }
+        .content{
+            position:absolute;
+            left:0px;
+            right:0px;
+            top:0px;
+            bottom:0[px];
+            height:100%;
+            border-radius:3px;
+            background: #ededed;
+            padding:5px;
+        }
+        #content{
+            background-image: url("space.jpg");
+        }
+    </style>
+</head>
+<body>
+    <input id="thebutton" type="button" value="CLICK ME" onclick="setImage('content', 'qr.png');">
+    <div id="content" class="content">sss</div>
+
+    <script>
+ 
+        function setImage(id, image){
+            let element = document.getElementById(id);                
+            element.setAttribute("style", 'background-image: url("'+image+'")');                  
+        }
+
+      
+    </script>
+
+</body>
+</html>
+
+
+
+
