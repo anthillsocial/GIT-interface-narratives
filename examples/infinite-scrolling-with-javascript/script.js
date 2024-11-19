@@ -3,12 +3,10 @@ const cardCountElem = document.getElementById("card-count");
 const cardTotalElem = document.getElementById("card-total");
 const loader = document.getElementById("loader");
 
-const cardLimit = 99;
+let cardLimit = 99;
 const cardIncrease = 9;
 const pageCount = Math.ceil(cardLimit / cardIncrease);
 let currentPage = 1;
-
-cardTotalElem.innerHTML = cardLimit;
 
 var throttleTimer;
 const throttle = (callback, time) => {

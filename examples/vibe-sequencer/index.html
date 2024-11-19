@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta content='width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=no;' name='viewport' />
+    <meta name="viewport" content="width=device-width" />
+<style>
+	@font-face {
+    	font-family: 'DotGothic16';
+    	src: url('DotGothic16-Regular.woff2') format('woff2'),
+        	url('DotGothic16-Regular.woff') format('woff');
+    	font-weight: normal;
+    	font-style: normal;
+    	font-display: swap;
+	}
+	body{
+		margin:0px;
+		height: 100%;
+		background-image: url("paper.jpg"); 
+		/*Image: Continuous form paper sheet
+		CC BY-SA 4.0 <https://creativecommons.org/licenses/by-sa/4.0>, via Wikimedia Commons*/
+		background-size:100%;
+		background-repeat: no-repeat;
+		background: url("paper.jpg") no-repeat center center fixed; 
+		background-size: cover;
+		font-family: 'DotGothic16';
+    	font-weight: normal;
+    	font-style: normal;
+		user-select: none;
+	}
+	#wrapper{
+		display: flex;
+		flex-direction: column;
+		margin:5%;
+		margin-right:8%;
+		z-index: 1000;
+	}
+	#maincontrols{
+		width:100%;
+		height:30px;
+		background-color: rgb(100, 100, 100, 0.4);
+	}
+	#controls{
+		height:70px;
+    	display:flex;
+		padding:10px;
+		z-index: 1001;
+	}
+	#buttons{
+		display: flex;
+		width:25%;
+		height:100%;
+		margin-right:10px;
+		background-color: rgb(49, 163, 239, 0.08);
+		text-align:center;
+		line-height: 70px;
+		font-family: 'DotGothic16';
+    	font-weight: normal;
+    	font-style: normal;
+	}
+	#buttons div{
+		width:50%;
+	}
+	#buttons div:first-child{
+		border-right:1px solid rgb(24, 0, 22);
+	}
+	#startstop{
+		height:100%;
+		width:100%;
+	}
+	#looper{
+		position:relative;
+		width:75%;
+		overflow:hidden;
+	}
+	#slider{
+		position:absolute;
+		background: rgb(56, 33, 2);
+		width:20px;
+		height:20px;
+		top: 25px;
+		left:0%;
+	}
+	#triggers{
+		position:relative;
+	}
+	#triggers div{
+		position:absolute;
+		width:20px;
+		height:20px;
+		top:25px;
+		left:50%;
+		font-size:15px;
+		line-height:18px;
+		text-align: center;
+		color: rgba(39, 0, 36, 0.5);
+		background: rgba(255, 0, 238, 0.26);
+	}
+</style>
+</head>
+<body>
+
+<div id="wrapper">
+	<nav id="maincontrols"></nav>
+	<nav id="controls">
+		<div id="buttons">
+			<div id='startstop'>STOP</div>
+			<div id='clear'>CLEAR</div>
+		</div>
+		<div id="looper"> 
+			<div id="slider"></div> 
+			<div id="triggers"></div>
+		</div>
+	</nav>
+</div>
+
+</body>
+
+<script>
+	// Initialise vars
+	let playing = true;
+	let slider = document.getElementById("slider");
+	let startstopbutton = document.getElementById("startstop");
+	let toucharea = document.getElementById("wrapper");
+	let triggers = document.getElementById("triggers");
+	let clear = document.getElementById("clear");
+	let xpos = 0; 
+	let speed = 0.5;
+	let pattern = [];
+	let currentframe = 0;
+	let c = '';
+
+	// Attach events
+	toucharea.ontouchstart = (event) => { record(); }
+	toucharea.onclick = (event) => { record(); }
+	startstopbutton.onclick = (event) => { startstop(); }
+	clear.onclick = (event) => { clearme(); }
+
+	// Load pattern from URL
+	loadpattern();
+
+	// Run the looper/recorder
+    runlooper();
+
+	function startstop(){
+		if(playing){
+			playing = false;
+			startstopbutton.innerText = "START";
+		}else{
+			playing = true; 
+			startstopbutton.innerText = "STOP";
+		}
+	}
+
+	// load a pattern from the url
+	function loadpattern(){
+		let pattern = window.location.hash.replace('#', ''); 
+		let myarray = pattern.split(',');
+		let pair;
+		myarray.forEach(element => {
+			pair = element.split(':');
+			currentframe = pair[0];
+			slider.style.left = pair[1];
+		});
+	}
+
+	// Loop the little indicator
+	function runlooper(){
+		let nextbeat = 0;
+		function slide(){
+			if(playing){
+				if(pattern[currentframe]!=undefined){
+					//console.log('BEAT:'+currentframe);
+					navigator.vibrate(50);
+				}
+				// Reset the position
+				if(xpos > 100){ 
+					xpos = 0.0;
+					currentframe = 0; 
+				}
+				slider.style.left = xpos+'%'; 
+				xpos += speed;
+			}
+			currentframe++;
+			window.requestAnimationFrame(slide); 
+		}
+    	window.requestAnimationFrame(slide); 
+	}
+
+	function record(){
+		// Create a dot
+		let dot = document.createElement("div"); 
+		dot.style.left = slider.style.left;
+		dot.innerHTML = "1";
+        triggers.append(dot); 
+		// Save the data 
+		pattern[currentframe] = slider.style.left;
+		if(window.location.hash!='') c = ',';
+		window.location.hash += c+currentframe+':'+slider.style.left.replace('%','');
+	}
+
+	function clearme(){
+		currentframe = 0;
+		triggers.innerHTML = "";
+		slider.style.left = "0%"; 
+		xpos = 0; 
+		pattern = [];
+		window.location.hash = '';
+	}
+
+</script>
+
+</body>
+</html>

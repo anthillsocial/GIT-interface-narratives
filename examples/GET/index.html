@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta content='width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no' name='viewport' />
+    <meta name="viewport" content="width=device-width" />
+<style>
+	@font-face {
+    	font-family: 'DotGothic16';
+    	src: url('DotGothic16-Regular.woff2') format('woff2'),
+        	 url('DotGothic16-Regular.woff') format('woff');
+    	font-weight: normal;
+    	font-style: normal;
+    	font-display: swap;
+	}
+	body{
+		margin:0px;
+		height: 100%;
+		background-image: url("paper.jpg"); 
+		/*Image: Continuous form paper sheet
+		CC BY-SA 4.0 <https://creativecommons.org/licenses/by-sa/4.0>, via Wikimedia Commons*/
+		background-size:100%;
+		background-repeat: no-repeat;
+		background: url("paper.jpg") no-repeat center center fixed; 
+		background-size: cover;
+		font-family: 'DotGothic16';
+    	font-weight: normal;
+    	font-style: normal;
+		user-select: none;
+	}
+	#wrapper{
+		display: flex;
+		flex-direction: column;
+		margin:5%;
+		margin-right:8%;
+		z-index: 1000;
+		padding:100px;
+	}
+	#content{
+		
+	}
+	form{
+		border:1px solid #313030;
+		background-color: rgb(200,200,200,0.8);
+		padding:10px;
+	}
+
+</style>
+</head>
+<body>
+
+<div id="wrapper">
+	<a href="?name=tom&data=33&pet=cat">Generate GET vars</a><br>
+	<form id="theForm" action="?">
+		<label for="firstName">First name:</label><br>
+		<input type="text" id="firstName" name="firstName" value=""><br>
+		<label for="lastName">Last name:</label><br>
+		<input type="text" id="lastName" name="lastName" value=""><br><br>
+		<input type="button" value="POST" onclick="submitForm()">
+	</form> 
+	<h3>PRINT GET VARIABLES</h3>
+	<div id="content"></div>
+</div>
+
+</body>
+
+<script>
+	// Access the GET variables and store them in a key:value array
+	let GET = accessGET(); 		   // ["Name":value, "Name":value, "Name":value]
+	console.log(GET['firstName']); // URL: index.html?firstName=Hello&lastName=Me
+	printGetVariables();           // Print any GET variables
+
+	// Print the GET variables to the page
+	function printGetVariables(){
+		let element = document.getElementById("content");   
+		let myContent = ""; 
+		// Loop through all the GET variables
+		for (let key in GET){
+			myContent += key+": "+GET[key]+"<br>";
+		}
+        element.innerHTML = myContent;       
+	}
+	
+	// Pseudo - submit the form (turns the form content into GET variables)
+	function submitForm(){
+		let form = document.getElementById("theForm");  
+		let first = document.getElementById("firstName").value;  
+		let last = document.getElementById("lastName").value;  
+		let GETurl = "?firstName="+first+"&lastName="+last; 
+		form.setAttribute('action', GETurl);  
+		document.getElementById("theForm").submit();
+	}
+
+	// GRab the GET variables and turn them into an array
+	function accessGET() {
+    	let result = null;
+        let keyValues = [];
+    	let GETarray = location.search.substr(1).split("&");
+    	for (let index=0; index<GETarray.length; index++) {
+        	let item = GETarray[index].split("=");
+			keyValues[item[0]] = decodeURIComponent(item[1]); // Decode any URL mess
+    	}
+    	return keyValues;
+	}
+
+	// Fill the form with values from GET variables
+	function fillForm(){
+		for (let key in GET){
+			let field = document.getElementById(key);  
+			field.setAttribute('value', GET[key]); 
+		}
+	}
+
+	fillForm(); 
+	printGetVariables();
+
+</script>
+
+</body>
+</html>

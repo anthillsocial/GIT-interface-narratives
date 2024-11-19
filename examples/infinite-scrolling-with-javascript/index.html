@@ -7,16 +7,19 @@
   <script>
 
     function generateMyContent(card, index){
+      cardLimit = 1000;
+      cardTotalElem.innerHTML = cardLimit;
       
       let myHTML; 
       card.style.backgroundColor = getRandomColor();
 
+      // DEFINE THE CONTENT FOR EACH "Card" (IDENTIFIED BY INDEX)
       if(index==1){
         myHtml = "<div>HTML const content for: "+index+"</div>";
       }else if(index==2){
         myHtml = "OTHER CONTENT";
       }else{
-        myHtml = 'EVRERYTHING ELSE!!! <img src="image.png">';
+        myHtml = 'EVERYTHING ELSE!!! <img src="image.png">';
       }
       
       return myHtml; 
