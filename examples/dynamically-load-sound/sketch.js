@@ -1,5 +1,6 @@
 let soundFile; 
 let mySound;
+let startstop = 1;
 
 // Grab the GET variables and turn them into an array
 function accessGET() {
@@ -30,6 +31,7 @@ function setup() {
   //call.play();
   //amen.setVolume(0.1);// between 0.0 and 1.0
   //call.setVolume(2.0); // between 0.0 and 1.0
+  mousePressed();
 }
 
 function draw() {
@@ -64,6 +66,11 @@ function draw() {
 }
 
 function mousePressed() {
-  mySound.stop();
-  mySound.play();
+  startstop = !startstop; 
+  if(startstop){
+    mySound.play();
+  }else{
+    mySound.stop();
+  }
+  
 }
