@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<head>
+  <style>
+    body{
+        /*background-image: url("2.jpg"); */
+        background-size: cover;
+        background-color: #39353d;
+    }
+    .flex-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+    .flex-container > div {
+      background-color: #f1f1f1;
+      
+      text-align: center;
+      line-height: 75px;
+      font-size: 30px;
+      
+    }
+    .flex-container span{
+      display:block;
+      position: relative;
+      width: 800px; /* Consistant Width of each images */
+      height: 700px; /* Consistant Height of each image */
+      margin-top:-100px;
+      mask-image:linear-gradient(to bottom,rgba(0,0,0,1.0) 70%,transparent 100%);
+      background-size:100%;
+    }
+    .flex-container span:first-child {
+      margin-top:0px;
+    }
+  </style> 
+</head>
+<body>
+
+
+<div class="flex-container">
+  <div id="myImages">
+    <span style='z-index:100;background-image:url("1.jpg");'>SOME text</span>
+    <span style='z-index:55;background-image:url("2.jpg");'>2</span>
+    <span style='z-index:10;background-image:url("3.jpg");'>3</span>  
+    <span style='z-index:1;background-image:url("1.jpg");'>3</span>  
+  </div>
+</div>
+
+<script>
+  // SET THE z-index of each image so they overlay each other
+  function orderImages(){
+    const theDIV = document.getElementById("myImages");
+    const spans = theDIV.getElementsByTagName("span");
+    theZindex = 10000; // First image has to have the highest value
+    for(i=0; i<spans.length; i++){
+      spans[i].style.zIndex = theZindex;
+      theZindex = theZindex-1;
+    }                            
+  }
+  // Do something everytime an image scrolls out of view
+  const bodyy = document.getElement("body");
+  window.onscroll = function (e) {
+    if(window.scrollY > 700){
+     // bodyy.style.background = 'background-image:url("2.jpg");';
+    }else if(window.scrollY > 1400){
+
+    }
+  };
+
+  orderImages();
+
+</script> 
+
+</body>
+</html>
