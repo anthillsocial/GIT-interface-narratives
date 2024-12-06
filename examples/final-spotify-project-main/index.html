@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+
+<head>
+    <script src="libraries/p5.min.js"></script>
+    <script src="libraries/p5.sound.min.js"></script>
+    <style>
+        html, body{
+            margin:0px;
+            background-color: rgba(1, 1, 1, 0.923);
+        }
+        #header, #footer{
+            height:50px;
+            padding-left: 25px;
+        }
+        .flexbox {
+            display: flex;
+            width: 2000px;
+        }
+        .flexbox > div {
+            outline: 1px solid;
+        }
+        .col1 {
+            flex: 1;
+            color: red;
+        }
+        .center {
+            flex: 0 0 1400px;
+            color: rgb(13, 13, 13);
+        }
+        .hoverbox{
+            flex: 1;
+            height: 399px;
+            background:#d6e2da;
+        }
+        .hoverbox:hover{
+            background:#22ab30;
+        }
+        #mywindow{
+            position:absolute;
+            top:15px;
+            left:50px;
+            right:50px;
+            bottom:50px;
+            padding:10px;
+            padding-top:130px;
+            background-color: rgba(16, 44, 27, 0.899);
+            z-index: 1000;
+            color: rgb(123, 222, 116);
+            font-family: "Verdana", Sans-serif;
+            font-size: 25px;
+            overflow: auto;   
+        }
+
+        .boxText{
+            padding-top:310px;
+            padding-left: 30px;
+            color: rgb(123, 222, 116);
+            font-family: "Verdana", Sans-serif;
+        }
+        main{
+            z-index:10000;
+        }
+        canvas {
+            display:block;
+            position:absolute;
+            top:30px;
+            left:60px;
+            width:100%;
+            height:100%;
+            z-index:1001;
+        }
+    </style>
+
+</head>
+
+<body id="main">
+
+    <div class="flexbox">
+        <div id="header" class="col1"></div>
+        <img src="header.png">
+    </div>
+    <div class="flexbox">
+        <div class="col1">Left</div>
+        <div class="center">
+            <div class="flexbox">
+                <div class="hoverbox" style='background:url("playlisticon.png");' onClick="win('DuoNewFamily.json')">DuoNewFamily.json
+                    <div class="boxText"><b>DuoNewFamily.json</b></div></div>
+                <div class="hoverbox" style='background:url("playlisticon.png");' onClick="win('Follow.json')">Follow.json
+                    <div class="boxText"><b>Follow.json</b></div>
+                </div>
+                <div class="hoverbox" style='background:url("playlisticon.png");' onClick="win('Identifiers.json')">Identifiers.json
+                    <div class="boxText"><b>Identifiers.json</b></div></div>
+                <div class="hoverbox" style='background:url("playlisticon.png");' onClick="win('Identity.json')">Identity.json
+                    <div class="boxText"><b>Identity.json</b></div></div>
+                <div class="hoverbox" style='background:url("playlisticon.png");' onClick="win('Inferences.json')">Inferences.json
+                    <div class="boxText"><b>Inferences.json</b></div></div>
+                <div class="hoverbox" style='background:url("playlisticon.png");' onClick="win('Marquee.json')">Marquee.json
+                    <div class="boxText"><b>Marquee.json</b></div></div>
+            </div>
+            <div class="flexbox">
+                <div class="hoverbox" style='background:url("playlisticon.png");' onClick="win('Payments.json')">Payments.json
+                    <div class="boxText"><b>Payments.json</b></div></div>
+                <div class="hoverbox" style='background:url("playlisticon.png");' onClick="win('Playlist1.json')">Playlist1.json
+                    <div class="boxText"><b>Playlist1.json</b></div></div>
+                <div class="hoverbox" style='background:url("playlisticon.png");' onClick="win('PlaylistInABottle.json')">PlaylistInABottle.json
+                    <div class="boxText"><b>PlaylistInABottle.json</b></div></div>
+                <div class="hoverbox" style='background:url("playlisticon.png");' onClick="win('Read_Me_First.pdf')">Read_Me_First.pdf
+                    <div class="boxText"><b>Read_Me_First.pdf</b></div></div>
+                <div class="hoverbox" style='background:url("playlisticon.png");' onClick="win('SearchQueries.json')">SearchQueries.json
+                    <div class="boxText"><b>SearchQueries.json</b></div></div>
+                <div class="hoverbox" style='background:url("playlisticon.png");' onClick="win('StreamingHistory_music_0.json')">StreamingHistory_music_0.json
+                    <div class="boxText"><b>StreamingHistory_music_0.json</b></div></div>
+            </div>
+            <div class="flexbox">
+                <div class="hoverbox" style='background:url("playlisticon.png");' onClick="win('StreamingHistory_podcast_0.json')">StreamingHistory_podcast_0.json
+                    <div class="boxText"><b>StreamingHistory_podcast_0.json</b></div></div>
+                <div class="hoverbox" style='background:url("playlisticon.png");' onClick="win('Userdata.json')">Userdata.json
+                    <div class="boxText"><b>Userdata.json</b></div></div>
+                <div class="hoverbox" style='background:url("playlisticon.png");' onClick="win('Wrapped2023.json')">Wrapped2023.json
+                    <div class="boxText"><b>Wrapped2023.json</b></div></div>
+                <div class="hoverbox" style='background:url("playlisticon.png");' onClick="win('YourLibrary.json')">YourLibrary.json]
+                    <div class="boxText"><b>YourLibrary.json</b></div></div>
+                <div class="hoverbox" style='background:url("playlisticon.png");' onClick="win('Block17')">Block17</div>
+                <div class="hoverbox" style='background:url("playlisticon.png");' onClick="win('Block18')">Block18</div>
+            </div>
+        </div>
+
+        <div class="col1">Right</div>
+
+    </div>
+
+    <div class="flexbox">
+        <div id="header" class="col1">FOOTER</div>
+    </div>
+
+    <script src="libraries/p5.speech.js"></script>
+    <script>
+        // Allows the p5.js skethch to access the current filename
+        let filename; 
+
+        // Open a popup window with content
+        function win(newFilename){
+            // Save the current filename being loaded
+            filename = newFilename; 
+            // Close an old window if its already open
+            closeme();
+            // Create the window DIV
+            let element = document.createElement("div");  
+            element.setAttribute("id", "mywindow");     
+            element.setAttribute("onClick", "closeme()");   
+            element.innerHTML = newFilename;                                                 
+            document.body.appendChild(element);  
+            // Add the text of a file to the DIV
+            grabText(element, newFilename); 
+            // Run the p5.js sketch 
+            loadP5SoundPlayer(filename); 
+        }
+
+        // Close an already open window
+        function closeme(){
+            // Delete the old p5 sketch
+            let p5canvas = document.getElementById("defaultCanvas0");
+            if(p5canvas != null){
+                p5canvas.remove();
+            }
+            // Delete an already open window
+            let window = document.getElementById("mywindow");
+            if(window != null){
+                window.remove();
+            }
+        }
+
+        // Load an external text file
+        function grabText(div, filename){
+            fetch(filename)
+                .then(response => response.text())
+                .then((data) => {
+                    let myText = filename; 
+                    myText += data; 
+                    myText += filename; 
+                    myText += "<br />PRIVATE INFORMATION"; 
+                    document.getElementById("mywindow").innerHTML = myText;
+                    //console.log(filename)
+            });
+        }
+
+        // Create a p5JS soundplayer
+        function loadP5SoundPlayer(filename){
+            scriptTag = document.createElement('script');
+            scriptTag.src = 'sketch.js';
+            document.getElementById('mywindow').appendChild(scriptTag);
+        }
+
+      
+    </script>
+
+  </body>
+</html>
